@@ -10,7 +10,7 @@ library(shinyFiles)
 ui <- fluidPage(
   
   titlePanel(strong("BINMAT: FOR FRAGMENT ANALYSIS DATA")),
-  img(src='clevercow.png', height = '150px', width = '150px'),
+  img(src='clevercow.png', height = '150px', width = '400px'),
   titlePanel(h4("Created by Clarke van Steenderen")),
   br(),
   sidebarLayout(
