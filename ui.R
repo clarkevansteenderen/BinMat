@@ -8,16 +8,6 @@ library(rhandsontable)
 library(shinyFiles)
 
 
-#list of packages required
-list.of.packages <- c("shiny", "shinyhelper", "magrittr", "pvclust", "MASS", "rhandsontable", "shinyFiles")
-
-#checking missing packages from list
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-
-#install missing ones
-if(length(new.packages)) install.packages(new.packages, dependencies = TRUE)
-
-
 ui <- fluidPage(
   
   titlePanel(strong("BINMAT: FOR FRAGMENT ANALYSIS DATA")),
