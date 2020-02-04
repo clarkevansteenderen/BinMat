@@ -1,3 +1,8 @@
+mypackages <- c("shiny", "shinyhelper", "magrittr", "pvclust", "rhandsontable", "shinyFiles", "MASS")
+checkpkg <- mypackages[!(mypackages %in% installed.packages()[,"Package"])]
+if(length(checkpkg)) install.packages(checkpkg, dependencies = TRUE)
+
+
 library(shiny)
 library(readr)
 library(shinyhelper)
