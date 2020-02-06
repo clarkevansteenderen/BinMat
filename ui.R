@@ -1,4 +1,4 @@
-mypackages <- c("shiny", "shinyhelper", "magrittr", "pvclust", "rhandsontable", "shinyFiles", "MASS")
+mypackages <- c("shiny", "shinyhelper", "magrittr", "pvclust", "rhandsontable", "shinyFiles", "MASS", "readr")
 checkpkg <- mypackages[!(mypackages %in% installed.packages()[,"Package"])]
 if(length(checkpkg)) install.packages(checkpkg, dependencies = TRUE)
 
@@ -14,7 +14,7 @@ library(shinyFiles)
 
 
 ui <- fluidPage(
-  
+
   titlePanel(strong("BINMAT: FOR FRAGMENT ANALYSIS DATA")),
   img(src='clevercow.png', height = '150px', width = '450px'),
   titlePanel(h4("Created by Clarke van Steenderen")),
@@ -27,7 +27,7 @@ ui <- fluidPage(
                   #radioButtons("choice", "What type of data do you have?", choices = c("The whole dataset are replicates for one species/location" =1, "Each pair in the dataset are replicates" =2), selected = 2),
                   fileInput("inFile", "Select a .csv file", accept = c(".csv")),
                  # actionButton("preview", "PREVIEW", style="color: #fff; background-color: black; border-color: white", icon("thumbs-o-up")),
-           
+
                   actionButton("check", "Check my data for unwanted values", style="color: #fff; background-color: black; border-color: white"),
                   br(), br(),
                   actionButton("act", "Consolidate matrix", style="color: #fff; background-color: black; border-color: white", icon("magic")),
@@ -35,16 +35,16 @@ ui <- fluidPage(
                   htmlOutput("consod_done"), tags$head(tags$style("#consod_done{color: darkred; font-size: 20px;}")),
                   br(), br(),
                   downloadButton("downloadData", "Download Matrix", style="color: #fff; background-color: darkblue; border-color: white"),
-                  br(), 
+                  br(),
                   tableOutput("text1") # check for unwanted values
-                  
+
     ),
-    
+
     mainPanel(
     # these are separate 'warnings' merely so that the output are on separate lines
       tabsetPanel(tabPanel(strong("MATRIX"),
                            br(),
-                           
+
                            htmlOutput("warning5"), tags$head(tags$style("#warning5{color: blue; font-size: 15px;}")),
                            br(),
                            htmlOutput("warning4"), tags$head(tags$style("#warning4{color: blue; font-size: 15px;}")),
@@ -52,12 +52,12 @@ ui <- fluidPage(
                            htmlOutput("warning2"), tags$head(tags$style("#warning2{color: blue; font-size: 15px;}")),
                            htmlOutput("warning3"), tags$head(tags$style("#warning3{color: blue; font-size: 15px;}")),
                            tableOutput("table")
-                           
+
                            #this changes the text font and colour of a particular output text. In this case,
-                           # the 'warning' outputs 
-                           
+                           # the 'warning' outputs
+
       ),
-      
+
       tabPanel(strong("SUMMARY"),
                br(),
                actionButton("summary", "Summary info", style="color: #fff; background-color: black; border-color: white"),
@@ -65,7 +65,7 @@ ui <- fluidPage(
                tableOutput("text3"), # summary info
                downloadButton("download_summary", "Download Summary", style="color: #fff; background-color: darkblue; border-color: white")
       ),
-      
+
       tabPanel(strong("ERROR RATES"),
                br(),
                actionButton("repro", "Check Error rates", style="color: #fff; background-color: black; border-color: white"),
@@ -73,13 +73,13 @@ ui <- fluidPage(
                tableOutput("text2"), # error rates
                downloadButton("download_errors", "Download Errors", style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br(),
-               numericInput("jacc_remove", "Remove samples with a jaccard error greater than:", 0, step = 0.1), 
+               numericInput("jacc_remove", "Remove samples with a jaccard error greater than:", 0, step = 0.1),
                br(),
                actionButton("remove", "Remove", style="color: #fff; background-color: black; border-color: white", icon("times")),
                br()
       ),
-      
-      tabPanel(strong("UPGMA TREE"), 
+
+      tabPanel(strong("UPGMA TREE"),
                br(),
                fileInput("inFile_upgma", "Select a consolidated .csv file", accept = ".csv"),
                numericInput("boot", "Number of bootstrap replicates for clustering tree:", 10, step = 1, min = 1),
@@ -87,9 +87,9 @@ ui <- fluidPage(
                downloadButton("downloadTree", "Download Clustering Tree", style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br(),
                plotOutput("upgmaTree", height = "800px", width= "1500px")
-               
+
       ),
-      
+
       tabPanel(strong("nMDS PLOT"),
                br(),
                strong("Upload an already consolidated binary matrix."),
@@ -115,12 +115,12 @@ ui <- fluidPage(
                plotOutput("mdsPlot", height = "600px", width = "700px"),
                downloadButton("downloadMDS", "Download MDS Plot", style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br()
-               
-               
+
+
       ),
-      
+
       tabPanel(strong("nMDS Validation"),
-               
+
                br(),
                actionButton("scree", "Scree Plot", style="color: #fff; background-color: darkblue; border-color: white", icon("pencil")),
                actionButton("shep", "Shepard Plot", style="color: #fff; background-color: darkblue; border-color: white", icon("pencil")),
@@ -132,9 +132,9 @@ ui <- fluidPage(
                br(),
                downloadButton("download_shep", "Download Shepard Plot", style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br()
-               
+
       ),
-      
+
       tabPanel(strong("Filter data"),
                br(), br(),
                numericInput("peak_thresh", "Remove samples with peaks less than:", 0, step = 1, min = 0),
@@ -146,12 +146,12 @@ ui <- fluidPage(
                downloadButton("download_removed", "Download removed samples",  style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br()
       )
-      
-      
+
+
       )
-      
-    )       
-    
+
+    )
+
   )
 )
 
