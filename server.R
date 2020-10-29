@@ -23,7 +23,6 @@ server <- function(input, output) {
     #if(input$format == ".csv") data1 = read.csv(file1$datapath)
     #else data1 = read_excel(file1$datapath)
 
-
     if(length(unique(data1[,1]))!=length(data1[,1])) {
 
       n = as.character(data1[,1])
@@ -50,15 +49,8 @@ server <- function(input, output) {
 
       data1[,1] <- NULL
 
-      #data1[,] <- lapply(data1[,], gsub, pattern = "$", replacement = "", fixed = TRUE)
-      #data1[,] <- lapply(data1[,], gsub, pattern = "?", replacement = "1", fixed = TRUE)
       data1[,] <- sapply(data1[,], as.numeric)
-
-      #data1[data1 > 1] = 1
-
-      #round(data1,0)
-      #observeEvent(input$preview, {output$table <- renderTable(rownames=T,{data1},digits = 0)
-
+     
       output$downloadData <- downloadHandler(
 
         filename = function (){paste('ConsolidatedBinaryMatrix', '.csv', sep = '.')},
@@ -70,14 +62,9 @@ server <- function(input, output) {
 
       answer = which(data1 != 0 & data1 != 1 & data1 != "?", arr.ind = T)
 
-
       observeEvent(input$check,{output$text1 <- renderTable(if(length(answer) > 0){answer} else {"None found"}, caption = "Unwanted values at:", caption.placement = getOption("xtable.caption.placement", "top"))})
 
-
       observeEvent(input$act, {
-
-        # if(input$choice == 2)
-        # {
 
         odd = data1[seq(1, nrow(data1), by = 2),]
         even = data1[seq(2, nrow(data1), by = 2),]
@@ -96,11 +83,9 @@ server <- function(input, output) {
         colnames(new) = colnames(data1)
 
         output$consod_done = renderText("<b>COMPLETE. READY FOR DOWNLOAD.")
-        #output$table <- renderTable(rownames = T,{new})
 
         mismatch_err = matrix(nrow=nrow(new), ncol = 1)
         jacc_err = matrix(nrow=nrow(new), ncol = 1)
-
 
         for(i in 1:nrow(new)) {
           # find the number of 1s, Os and question marks
@@ -124,13 +109,10 @@ server <- function(input, output) {
         error_table[7,] = "Jaccard error St.dev:"
         error_table[8,] = round(sd(jacc_err[,1]),4)
 
-
         observeEvent(input$repro,{
 
           output$text2 <- renderTable(error_table)
-
-          #output$text2 <- renderTable(c("Average Euclidean Error:", round(mean(mismatch_err[,1]),4), "Average Jaccard:", round(mean(jacc_err[,1]),4), "Euclidean error St. dev:", round(sd(mismatch_err[,1]),4), "Jaccard error St.dev:", round(sd(jacc_err[,1]),4)), caption = "Error Rates:", caption.placement = getOption("xtable.caption.placement", "top"))
-
+        
           output$download_errors <- downloadHandler(
 
             filename = function (){paste('Error_rates', 'csv', sep = '.')},
@@ -141,16 +123,13 @@ server <- function(input, output) {
 
         observeEvent(input$summary, {
 
-
           nr_peaks = matrix(nrow = nrow(new), ncol = 1)
-
 
           for(i in 1:nrow(new)) {
             total = 0
             for(j in 1:ncol(new)) {if(new[i,j] == 1) total = total + 1}
 
             nr_peaks[i,] = total
-
           }
 
           summary_table = data.frame("Summary" = matrix(ncol = 1, nrow = 10))
@@ -166,8 +145,7 @@ server <- function(input, output) {
           summary_table[10,] = ncol(new)-1
 
           output$text3 = renderTable(summary_table)
-          #output$text3 = renderTable(c("Average no. peaks = ", round(mean(nr_peaks),4), "sd = ", round(sd(nr_peaks),4), "Max. no. peaks = ", max(nr_peaks), "Min. no. peaks = ", min(nr_peaks), "No. loci = ", ncol(new)))
-
+          
           output$download_summary <- downloadHandler(
 
             filename = function (){paste('Error_rates', 'csv', sep = '.')},
@@ -214,88 +192,9 @@ server <- function(input, output) {
           content = function (file){write.csv(new, file)}
         )
 
-
-        #"draw tree" button
-        # observeEvent(input$drawTree, {
-        #
-        #   new_mat = new
-        #   # make the names shorter (here, only 10 characters long)
-        #   row.names(new_mat) = row.names(new)
-        #   newnames =substring(row.names(new_mat), 0, 50)
-        #   row.names(new_mat) = newnames
-        #   rownames(new_mat) = make.names(newnames, unique = T)
-        #
-        #   new_mat[new_mat=="?"] <- NA
-        #   new_mat = as.data.frame(new_mat)
-        #
-        #   result <- pvclust(t(new_mat), method.dist = "binary", method.hclust="average", nboot=input$boot) # 'average' method is the UPGMA
-        #
-        #   output$upgmaTree = {renderPlot(plot(result, cex = 0.55, print.num = F, print.pv = T, cex.pv = 0.55))}
-        #
-        #
-        #   output$downloadTree <- downloadHandler(
-        #
-        #     filename = function (){paste("UPGMAtree", "svg", sep = '.')},
-        #
-        #     content = function (file){svg(file)
-        #
-        #       plot(result, cex = 0.55, print.num = F, print.pv = T, cex.pv = 0.55)
-        #       dev.off()
-        #
-        #     }
-        #   )
-        #
-        # })
-
-
-
-        # }  # end of if statement regarding data type
-
-
-        # else {
-        #   consod = data.frame()
-        #
-        #   for(i in 1:ncol(data1)){
-        #
-        #     avg = sum(data1[,i]/nrow(data1))
-        #     if (avg > 0.5) consod[1,i] = paste("1")
-        #     if (avg == 0.5) consod[1,i] = paste("?")
-        #     if (avg < 0.5) consod[1,i] = paste("0")
-        #   }
-        #
-        #   colnames(consod) = colnames(data1)
-        #   row.names(consod) = "Combined replicates"
-        #
-        #   output$table <- renderTable(rownames = T,{consod})
-        #
-        #   # find the number of 1s, Os and question marks
-        #   ones = length(which(consod == 1))
-        #   zeroes = length(which(consod == 0))
-        #   questions = length(which(consod == "?"))
-        #   sum_bands = ones + questions
-        #
-        #   observeEvent(input$repro,{output$text2 <- renderTable(c("1s (%):", ones/sum_bands*100 , "? (%):", questions/sum_bands*100), caption = "Reproducibility:", caption.placement = getOption("xtable.caption.placement", "top"))})
-        #
-        #   output$downloadData <- downloadHandler(
-        #
-        #     filename = function (){paste('name', '.csv', sep = '.')},
-        #     content = function (file){write.csv(consod, file)}
-        #
-        #   )
-        #
-        #   observeEvent(input$drawTree, {
-        #     output$warning5 = renderText("<b> You can only create a clustering tree for data consisting of replicate pairs.")
-        #
-        #   })
-        #
-        # } # end of else statement
-
       })
     }
   })
-
-
-
 
 
   # for the separate uploading of data for an MDS plot:
@@ -338,8 +237,6 @@ server <- function(input, output) {
 
       fac = factor(data_mds[[1]], levels = unique(data_mds[[1]])) # create a factor variable for groups
 
-      #data_mds[[1]] = NULL # remove the group column from the dataframe
-
       #colour_choices = c("dodgerblue", "black", "red", "green3", "orange", "darkblue", "gold2", "darkgreen", "darkred", "grey", "darkgrey", "magenta", "darkorchid", "purple", "brown", "coral3", "turquoise", "deeppink", "lawngreen", "darkred", "deepskyblue", "tomato", "yellowgreen", "royalblue", "olivedrab", "midnightblue", "indianred1", "darkturquoise")
       colour_choices = c(colors())
       shape_choices = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25")
@@ -347,7 +244,6 @@ server <- function(input, output) {
       fact_table = data.frame(Groups = levels(fac), Colour_by_Group = colour_choices[1:length(levels(fac))], Point_Shape="16", stringsAsFactors=F)
       #Colour_by_Group = colors()[1:length(levels(fac))]
       #colour_choices = c(colors())
-
 
       output$grps = renderRHandsontable(
         rhandsontable(fact_table, height = "300")
@@ -454,8 +350,6 @@ server <- function(input, output) {
 
         })
 
-
-
       })
 
       observeEvent(input$filter_samples, {
@@ -500,9 +394,7 @@ server <- function(input, output) {
         }
       })
 
-
     } # end of else statement regarding duplicate row names
-
 
   })
 
@@ -513,7 +405,6 @@ server <- function(input, output) {
     if (is.null(file_upgma)) {
       return(NULL)
     }
-
 
     observeEvent(input$drawTree, {
 
@@ -539,12 +430,7 @@ server <- function(input, output) {
 
     })
 
-
-
   })
-
-
-
 
 }
 
