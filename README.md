@@ -42,6 +42,7 @@ install.packages("shiny")
 library(shiny)   
 shiny::runGitHub("BinMat", "CJMvS")    
 
+---
 
 **UPLOADING DATA**
 
