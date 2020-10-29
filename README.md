@@ -30,6 +30,16 @@ The user is also able to generate interactive non-metric MDS plots, and filter t
 
 ---
 
+**INSTALLING THE R PACKAGE**
+
+BinMat is available on CRAN, and can be installed by using the command:   
+> install.packages("BinMat")   
+Or it can be run via GitHub as an R shiny application:   
+> install.packages("shiny")   
+> library(shiny)   
+> shiny::runGitHub("BinMat", "CJMvS")    
+
+
 **UPLOADING DATA**
 
 Binary data needs to be in the following example format, saved as a .csv file:
