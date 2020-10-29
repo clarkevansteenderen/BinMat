@@ -201,6 +201,8 @@ The filtered data can then be re-uploaded in the 'nMDS PLOT' tab, and a new plot
 
 `upgma(data_consolidated, fromFile = T, size = 1, bts = 500) # plot a UPGMA hierarchical clustering tree. fromFile = T, because this data was read in again from Excel after adding the grouping column` 
 
+--- 
+
 **METHODS**
 
 Mismatch/Euclidean error = (f01 + f10) / (f01 + f10 + f00 + f11)
