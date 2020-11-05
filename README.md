@@ -42,6 +42,9 @@ Or it can be run via GitHub as an R shiny application:
 `library(shiny)`   
 `shiny::runGitHub("BinMat", "CJMvS")`    
 
+Or accessed via the R Shiny Apps platform:   
+https://clarkevansteenderen.shinyapps.io/BINMAT/   
+
 ---
 
 **UPLOADING DATA**
