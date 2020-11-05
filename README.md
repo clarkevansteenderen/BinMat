@@ -4,19 +4,12 @@
 
 ---
 
-*Created by:*
-
-*Clarke van Steenderen*
-
-*Department of Zoology and Entomology*
-
-[*The Centre for Biological Control*](https://www.ru.ac.za/centreforbiologicalcontrol/)
-
-*Rhodes University, Grahamstown, Eastern Cape, South Africa*
-
-*2019*
-
-*e-mail:* vsteenderen@gmail.com
+*Created by:*   
+*Clarke van Steenderen*   
+*Department of Zoology and Entomology*   
+[*The Centre for Biological Control*](https://www.ru.ac.za/centreforbiologicalcontrol/)   
+*Rhodes University, Grahamstown, Eastern Cape, South Africa*   
+*e-mail:* vsteenderen@gmail.com   
 
 ---
 
