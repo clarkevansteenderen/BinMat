@@ -10,7 +10,7 @@
 
 *Department of Zoology and Entomology*
 
-[*The Centre for Biological Control*] (https://www.ru.ac.za/centreforbiologicalcontrol/)
+[*The Centre for Biological Control*](https://www.ru.ac.za/centreforbiologicalcontrol/)
 
 *Rhodes University, Grahamstown, Eastern Cape, South Africa*
 
