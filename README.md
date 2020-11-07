@@ -1,4 +1,5 @@
 ## **BINMAT: FOR FRAGMENT ANALYSIS DATA** 
+[![DOI](https://zenodo.org/badge/238669382.svg)](https://zenodo.org/badge/latestdoi/238669382)   
 
 ### **USER GUIDE**
 
