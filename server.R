@@ -340,8 +340,8 @@ server <- function(input, output) {
 
       #data_mds[[1]] = NULL # remove the group column from the dataframe
 
-      #colour_choices = c("dodgerblue", "black", "red", "green3", "orange", "darkblue", "gold2", "darkgreen", "darkred", "grey", "darkgrey", "magenta", "darkorchid", "purple", "brown", "coral3", "turquoise", "deeppink", "lawngreen", "darkred", "deepskyblue", "tomato", "yellowgreen", "royalblue", "olivedrab", "midnightblue", "indianred1", "darkturquoise")
-      colour_choices = c(colors())
+      colour_choices = c("dodgerblue", "black", "red", "green3", "orange", "darkblue", "gold2", "darkgreen", "darkred", "grey", "darkgrey", "magenta", "darkorchid", "purple", "brown", "coral3", "turquoise", "deeppink", "lawngreen", "darkred", "deepskyblue", "tomato", "yellowgreen", "royalblue", "olivedrab", "midnightblue", "indianred1", "darkturquoise")
+      #colour_choices = c(colors())
       shape_choices = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25")
 
       fact_table = data.frame(Groups = levels(fac), Colour_by_Group = colour_choices[1:length(levels(fac))], Point_Shape="16", stringsAsFactors=F)
