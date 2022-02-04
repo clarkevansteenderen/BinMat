@@ -153,17 +153,19 @@ server <- function(input, output) {
 
           }
 
-          summary_table = data.frame("Summary" = matrix(ncol = 1, nrow = 10))
-          summary_table[1,] = "Average no. peaks = "
-          summary_table[2,] = round(mean(nr_peaks),4)
-          summary_table[3,] = "sd = "
-          summary_table[4,] = round(sd(nr_peaks),4)
-          summary_table[5,] = "Max. no. peaks = "
-          summary_table[6,] = max(nr_peaks)
-          summary_table[7,] = "Min. no. peaks = "
-          summary_table[8,] = min(nr_peaks)
-          summary_table[9,] = "No. loci = "
-          summary_table[10,] = ncol(new)-1
+           summary_table = data.frame("Summary" = matrix(ncol = 2, nrow = 5))
+          summary_table[1,1] = "Average no. peaks "
+          summary_table[1,2] = round(mean(nr_peaks),4)
+          summary_table[2,1] = "Standard deviation"
+          summary_table[2,2] = round(sd(nr_peaks),4)
+          summary_table[3,1] = "Max. no. peaks"
+          summary_table[3,2] = max(nr_peaks)
+          summary_table[4,1] = "Min. no. peaks"
+          summary_table[4,2] = min(nr_peaks)
+          summary_table[5,1] = "No. loci "
+          summary_table[5,2] = ncol(new)
+          
+          colnames(summary_table) = c("Metric", "Value")
 
           output$text3 = renderTable(summary_table)
           #output$text3 = renderTable(c("Average no. peaks = ", round(mean(nr_peaks),4), "sd = ", round(sd(nr_peaks),4), "Max. no. peaks = ", max(nr_peaks), "Min. no. peaks = ", min(nr_peaks), "No. loci = ", ncol(new)))
