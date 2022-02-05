@@ -103,6 +103,12 @@ ui <- fluidPage(
                br(),
                br(),
                numericInput("k_value", "No. of dimensions (k): ", 2, step = 1, min = 2, max = 3),
+               
+               conditionalPanel(
+                 condition = "input.k_value == 3",
+                 selectInput("plot_components", "Which components would you like to plot?", choices = c("1 and 2", "1 and 3", "2 and 3"), selected = "1 and 2"),
+               ),
+               
                br(),
                actionButton("plotMDS", "PLOT nMDS", style="color: #fff; background-color: darkred; border-color: white; font-size:130%", icon("pencil")),
                br(), br(),
@@ -110,8 +116,9 @@ ui <- fluidPage(
               # downloadButton("download_removed_data", "Download removed samples", style="color: #fff; background-color: darkblue; border-color: white"),
                downloadButton("download_dist_matrix","Download distance matrix", style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br(), br(),
-               sliderInput("cexSize", "Point size", min = 0.1, max = 5, step = 0.1, value = 1),
-               radioButtons("display_labs", "Show sample labels?", choices = c("No", "Yes"), selected = "No"),
+               sliderInput("cexSize", "Point size", min = 0.1, max = 10, step = 0.1, value = 4),
+               checkboxInput("display_labs", "Show sample labels?", value = FALSE),
+               checkboxInput("display_ellipses", "Show ellipses?", value = FALSE),
                plotOutput("mdsPlot", height = "600px", width = "700px"),
                downloadButton("downloadMDS", "Download MDS Plot", style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br()
