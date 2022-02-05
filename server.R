@@ -153,7 +153,7 @@ server <- function(input, output) {
 
           }
 
-           summary_table = data.frame("Summary" = matrix(ncol = 2, nrow = 5))
+          summary_table = data.frame("Summary" = matrix(ncol = 2, nrow = 5))
           summary_table[1,1] = "Average no. peaks "
           summary_table[1,2] = round(mean(nr_peaks),4)
           summary_table[2,1] = "Standard deviation"
@@ -356,6 +356,10 @@ server <- function(input, output) {
         %>% hot_col(col = "Colour_by_Group", type = "dropdown", source = colour_choices)
         %>% hot_col(col = "Point_Shape", type = "dropdown", source = shape_choices)
       )
+      
+      if(input$display_labs == TRUE) mds_labels = row.names(data_mds)
+      else mds_labels = ""
+      
 
       observeEvent(input$plotMDS, {
 
@@ -366,30 +370,69 @@ server <- function(input, output) {
         d2 = as.dist(d)
         d2 = d2 + 0.01 # adding 0.01 here to cover for cases where there are identical sequences, leading to zero distances. Zero distances give the error "Warning: Error in isoMDS: zero or negative distance between objects x and y"
 
-        output$download_dist_matrix = downloadHandler(
-          filename = function (){paste('distance_matrix', 'csv', sep = '.')},
-          content = function (file){write.csv(d, file)}
-        )
-
-        # req(input$k_value)
         k_val = input$k_value
         pt_size = input$cexSize
-
-        isoplot = isoMDS(d2,k=k_val)
-
+        
+        isoplot = isoMDS(d2, k = k_val)
+        
+        #isoplot_2 = data_mds[,2:ncol(data_mds)] %>% dist(method = dist_meth) %>% isoMDS(k = k_val) %>% .$points %>% tibble::as_tibble()
+        #colnames(isoplot_2) = c("Dimension 1", "Dimension 2")
+        
         # req(input$grps)
         colour_update = hot_to_r(input$grps)
         fact_table[,2] = colour_update[,2]
         fact_table[,3] = colour_update[,3]
-
+        
+        isoplot_df = as.data.frame(tibble::as_tibble( isoplot$points ))
+        isoplot_df$colours = c(colour_update[[2]])[fac]
+        isoplot_df$groups = fac
+        
+        isoplot_df$colours = factor(isoplot_df$colours, levels = unique(isoplot_df$colours))
+        
+        if (k_val == 2) colnames(isoplot_df) = c("Dimension 1", "Dimension 2", "colours", "groups")
+        else colnames(isoplot_df) = c("Dimension 1", "Dimension 2", "Dimension 3", "colours", "groups")
+        
+        if(input$plot_components == "1 and 2"){
+          x_comp = "Dimension 1"
+          y_comp = "Dimension 2"
+        }
+        
+        else if(input$plot_components == "1 and 3"){
+          x_comp = "Dimension 1"
+          y_comp = "Dimension 3"
+        }
+        
+        else if(input$plot_components == "2 and 3"){
+          x_comp = "Dimension 2"
+          y_comp = "Dimension 3"
+        }
+       
+        
         #colour_update contains the dataframe with 2 columns: group and colour
 
         output$mdsPlot = renderPlot({
           #par(mar = c(6.1, 8.1, 5.1, 7.1))
-          eqscplot(isoplot$points, xlab = "Dimension 1", ylab = "Dimension 2", col = c(colour_update[[2]])[fac], pch = c(as.numeric(colour_update[[3]]))[fac], cex = pt_size)
-          if(input$display_labs == "Yes")
-            text(isoplot$points, labels = row.names(data_mds), cex = 1, pos= 4)
+          
+         pp = ggpubr::ggscatter(isoplot_df, 
+                                x = x_comp, 
+                                y = y_comp, 
+                                label = mds_labels,
+                                color = "groups",
+                                palette = levels(isoplot_df$colours),
+                                shape = c(as.numeric(colour_update[[3]]))[fac],
+                                ellipse = input$display_ellipses,
+                                size = pt_size
+                                )
+         
+         plot(pp)
+         #eqscplot(isoplot$points, xlab = "Dimension 1", ylab = "Dimension 2", col = c(colour_update[[2]])[fac], pch = c(as.numeric(colour_update[[3]]))[fac], cex = pt_size)
+          
         })
+        
+        output$download_dist_matrix = downloadHandler(
+          filename = function (){paste('distance_matrix', 'csv', sep = '.')},
+          content = function (file){write.csv(d, file)}
+        )
 
         output$downloadMDS <- downloadHandler(
 
