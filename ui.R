@@ -1,4 +1,4 @@
-mypackages <- c("shiny", "shinyhelper", "magrittr", "pvclust", "rhandsontable", "shinyFiles", "MASS", "readr")
+mypackages <- c("shiny", "shinyhelper", "magrittr", "pvclust", "rhandsontable", "shinyFiles", "MASS", "readr", "ggpubr")
 checkpkg <- mypackages[!(mypackages %in% installed.packages()[,"Package"])]
 if(length(checkpkg)) install.packages(checkpkg, dependencies = TRUE)
 
@@ -11,7 +11,7 @@ library(pvclust)
 library(MASS)
 library(rhandsontable)
 library(shinyFiles)
-
+library(ggpubr)
 
 ui <- fluidPage(
 
