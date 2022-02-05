@@ -439,7 +439,17 @@ server <- function(input, output) {
           filename = function (){paste("nMDS_Plot", "svg", sep = '.')},
 
           content = function (file){svg(file)
-            eqscplot(isoplot$points, col = c(colour_update[[2]])[fac], pch = c(as.numeric(colour_update[[3]]))[fac], cex = pt_size)
+            pp = ggpubr::ggscatter(isoplot_df, 
+                                   x = x_comp, 
+                                   y = y_comp, 
+                                   label = mds_labels,
+                                   color = "groups",
+                                   palette = levels(isoplot_df$colours),
+                                   shape = c(as.numeric(colour_update[[3]]))[fac],
+                                   ellipse = input$display_ellipses,
+                                   size = pt_size
+            )
+            plot(pp)
             dev.off()
           }
         )
