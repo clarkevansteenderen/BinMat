@@ -421,6 +421,7 @@ server <- function(input, output) {
                                 palette = levels(isoplot_df$colours),
                                 shape = c(as.numeric(colour_update[[3]]))[fac],
                                 ellipse = input$display_ellipses,
+                                ellipse.type = input$ellipse_type,
                                 size = pt_size
                                 )
          
@@ -447,6 +448,7 @@ server <- function(input, output) {
                                    palette = levels(isoplot_df$colours),
                                    shape = c(as.numeric(colour_update[[3]]))[fac],
                                    ellipse = input$display_ellipses,
+                                   ellipse.type = input$ellipse_type,
                                    size = pt_size
             )
             plot(pp)
