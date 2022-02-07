@@ -23,7 +23,6 @@ server <- function(input, output) {
     #if(input$format == ".csv") data1 = read.csv(file1$datapath)
     #else data1 = read_excel(file1$datapath)
 
-
     if(length(unique(data1[,1]))!=length(data1[,1])) {
 
       n = as.character(data1[,1])
@@ -114,16 +113,17 @@ server <- function(input, output) {
 
         }
 
-        error_table = data.frame("Errors" = matrix(ncol = 1, nrow = 8))
-        error_table[1,] = "Average Euclidean Error:"
-        error_table[2,] = round(mean(mismatch_err[,1]),4)
-        error_table[3,] = "Euclidean error St. dev:"
-        error_table[4,] = round(sd(mismatch_err[,1]),4)
-        error_table[5,] = "Average Jaccard:"
-        error_table[6,] = round(mean(jacc_err[,1]),4)
-        error_table[7,] = "Jaccard error St.dev:"
-        error_table[8,] = round(sd(jacc_err[,1]),4)
-
+        error_table = data.frame("Errors" = matrix(ncol = 2, nrow = 4))
+        error_table[1,1] = "Average Euclidean Error:"
+        error_table[1,2] = round(mean(mismatch_err[,1]),4)
+        error_table[2,1] = "Euclidean error St. dev:"
+        error_table[2,2] = round(sd(mismatch_err[,1]),4)
+        error_table[3,1] = "Average Jaccard:"
+        error_table[3,2] = round(mean(jacc_err[,1]),4)
+        error_table[4,1] = "Jaccard error St.dev:"
+        error_table[4,2] = round(sd(jacc_err[,1]),4)
+        
+        colnames(error_table) = c("Metric", "Value")
 
         observeEvent(input$repro,{
 
@@ -342,7 +342,7 @@ server <- function(input, output) {
 
       #data_mds[[1]] = NULL # remove the group column from the dataframe
 
-      colour_choices = c("dodgerblue", "black", "red", "green3", "orange", "darkblue", "gold2", "darkgreen", "darkred", "grey", "darkgrey", "magenta", "darkorchid", "purple", "brown", "coral3", "turquoise", "deeppink", "lawngreen", "darkred", "deepskyblue", "tomato", "yellowgreen", "royalblue", "olivedrab", "midnightblue", "indianred1", "darkturquoise")
+      colour_choices = c("dodgerblue", "black", "red", "green3", "orange", "darkblue", "gold2", "darkgreen", "darkred", "grey", "darkgrey", "magenta", "darkorchid", "purple", "brown", "coral3", "turquoise", "deeppink", "lawngreen", "darkred", "deepskyblue", "tomato", "yellow", "yellowgreen", "royalblue", "olivedrab", "midnightblue", "indianred1", "darkturquoise")
       #colour_choices = c(colors())
       shape_choices = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25")
 
@@ -360,6 +360,7 @@ server <- function(input, output) {
       if(input$display_labs == TRUE) mds_labels = row.names(data_mds)
       else mds_labels = ""
       
+      pt_size = input$cexSize
 
       observeEvent(input$plotMDS, {
 
@@ -371,7 +372,6 @@ server <- function(input, output) {
         d2 = d2 + 0.01 # adding 0.01 here to cover for cases where there are identical sequences, leading to zero distances. Zero distances give the error "Warning: Error in isoMDS: zero or negative distance between objects x and y"
 
         k_val = input$k_value
-        pt_size = input$cexSize
         
         isoplot = isoMDS(d2, k = k_val)
         
@@ -422,7 +422,9 @@ server <- function(input, output) {
                                 shape = c(as.numeric(colour_update[[3]]))[fac],
                                 ellipse = input$display_ellipses,
                                 ellipse.type = input$ellipse_type,
-                                size = pt_size
+                                size = pt_size,
+                                ellipse.alpha = input$ellipse_alpha,
+                                star.plot = input$star_plot
                                 )
          
          plot(pp)
@@ -449,7 +451,9 @@ server <- function(input, output) {
                                    shape = c(as.numeric(colour_update[[3]]))[fac],
                                    ellipse = input$display_ellipses,
                                    ellipse.type = input$ellipse_type,
-                                   size = pt_size
+                                   size = pt_size,
+                                   ellipse.alpha = input$ellipse_alpha,
+                                   star.plot = input$star_plot
             )
             plot(pp)
             dev.off()
