@@ -3,6 +3,8 @@
 
 ### **USER GUIDE**
 
+<img src="https://github.com/clarkevansteenderen/BinMat/blob/master/www/clevercow.png" height = 120>
+
 ---
 
 *Created by:*   
