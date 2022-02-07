@@ -118,6 +118,7 @@ ui <- fluidPage(
                br(), br(), br(),
                sliderInput("cexSize", "Point size", min = 0.1, max = 10, step = 0.1, value = 4),
                checkboxInput("display_labs", "Show sample labels?", value = FALSE),
+               checkboxInput("repel_labs", "Repel labels to avoid overlap?", value = FALSE),
                checkboxInput("star_plot", "Display as a star plot?", value = FALSE),
                checkboxInput("display_ellipses", "Show ellipses?", value = FALSE),
               
