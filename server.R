@@ -447,6 +447,7 @@ server <- function(input, output) {
                                    x = x_comp, 
                                    y = y_comp, 
                                    label = mds_labels,
+                                   repel = input$repel_labs,
                                    color = "groups",
                                    palette = levels(isoplot_df$colours),
                                    shape = c(as.numeric(colour_update[[3]]))[fac],
