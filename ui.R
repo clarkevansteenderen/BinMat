@@ -119,6 +119,10 @@ ui <- fluidPage(
                sliderInput("cexSize", "Point size", min = 0.1, max = 10, step = 0.1, value = 4),
                checkboxInput("display_labs", "Show sample labels?", value = FALSE),
                checkboxInput("display_ellipses", "Show ellipses?", value = FALSE),
+               conditionalPanel(
+                condition = "input.display_ellipses == TRUE",
+                selectInput("ellipse_type", "Ellipse type", choices = c("convex", "confidence", "t", "norm", "euclid"), selected = "norm")
+              ),
                plotOutput("mdsPlot", height = "600px", width = "700px"),
                downloadButton("downloadMDS", "Download MDS Plot", style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br()
