@@ -22,14 +22,14 @@ This program was written to rapidly consolidate binary matrices derived from dom
 inter-simple sequence repeats (ISSRs) and amplified fragment length polymorphisms (AFLPs)). 
 This can be applied to data consisting of replicate pairs, or it can be used to consolidate the entire dataset (i.e. treating all the samples uploaded as replicates for one
 sample). 
-The user is also able to generate interactive non-metric MDS plots, and filter their data according to a specified minimum peak number threshold.
+The user is also able to generate interactive non-metric MDS plots, and filter their data according to a specified minimum peak number threshold.		
 Please go through the [vignette](https://cran.r-project.org/web/packages/BinMat/vignettes/BinMat.html) for more information and example output. 
 
 ---
 
 **INSTALLING THE R PACKAGE**
 
-BinMat is available on CRAN, and can be installed by using the command: 
+BinMat is available on [CRAN](https://cran.r-project.org/web/packages/BinMat/index.html), and can be installed by using the command: 
 
 `install.packages("BinMat")`  
 
