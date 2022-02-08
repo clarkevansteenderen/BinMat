@@ -23,6 +23,7 @@ inter-simple sequence repeats (ISSRs) and amplified fragment length polymorphism
 This can be applied to data consisting of replicate pairs, or it can be used to consolidate the entire dataset (i.e. treating all the samples uploaded as replicates for one
 sample). 
 The user is also able to generate interactive non-metric MDS plots, and filter their data according to a specified minimum peak number threshold.
+Please go through the [vignette](https://cran.r-project.org/web/packages/BinMat/vignettes/BinMat.html) for more information and example output. 
 
 ---
 
