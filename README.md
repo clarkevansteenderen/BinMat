@@ -42,6 +42,10 @@ Or it can be run via GitHub as an R shiny application:
 Or accessed via the R Shiny Apps platform:   
 https://clarkevansteenderen.shinyapps.io/BINMAT/   
 
+To cite BinMat, use:
+
+`citation("BinMat")` 
+
 ---
 
 **UPLOADING DATA**
