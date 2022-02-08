@@ -1,4 +1,14 @@
 #NEW VERSION
+
+ggthemes = list("Classic" = theme_classic(),
+                "Dark" = theme_dark(),
+                "Minimal" = theme_minimal(),
+                "Grey" = theme_grey(),
+                "Light" = theme_light(),
+                "Black/White" = theme_bw(),
+                "Void" = theme_void(),
+                "Pubr" = theme_pubr())
+
 server <- function(input, output) {
 
   #options(shiny.maxRequestSize=100*1024^2)
@@ -425,7 +435,8 @@ server <- function(input, output) {
                                 ellipse.type = input$ellipse_type,
                                 size = pt_size,
                                 ellipse.alpha = input$ellipse_alpha,
-                                star.plot = input$star_plot
+                                star.plot = input$star_plot,
+                                ggtheme = ggthemes[[input$ggtheme_nmds]]
                                 )
          
          plot(pp)
