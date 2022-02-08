@@ -166,39 +166,23 @@ The filtered data can then be re-uploaded in the 'nMDS PLOT' tab, and a new plot
 
 **USING THE R PACKAGE**
 
-`library(BinMat)`
-
-`data = read.csv("file_name.csv") # read in the binary data for all replicate sample pairs`
-
-`check.data(data) # check for any unwanted characters apart from zeros and ones. Here, 'none found' is printed`
-
-`peaks.original(data) # access peak summary information`
-
-`cons = consolidate(data) # consolidate all replicate pairs into consensus reads`
-
-`errors(cons) # get the mean Jaccard and Euclidean error rates for all replicate samples`
-
-`peaks.consolidated(cons) # access information about the peak numbers in the consolidated matrix`
-
-`filtered_data = peak.remove(cons, thresh = 10) # if desired, remove samples with peak counts less than 10`
-
-`write.csv(filtered_data, file = "file_name_2.csv") # write the consolidated matrix (either the original matrix, or the filtered one) to the working directory, open in Microsoft Excel, and add grouping information as a second column in the matrix`
-
-`data_consolidated = read.csv("file_name_2.csv") # read in this consolidated file, with the added grouping information`
-
-`scree(data_consolidated) # choose a k-value below the 15% threshold`
-
-`shepard(data_consolidated, k_val = 2) # create a shepard plot for k = 2 or k = 3 dimensions`
-
-`group.names(data_consolidated) # access the group names`
-
-`colrs = c("red", "blue", "green", "gold") # assign appropriate colors to each group. This is an example for 4 groups.`
-
-`shps = c(16, 16, 16, 16) # assign point shapes to each group`
-
-`nmds(data_consolidated, colours = colrs, shapes = shps, labs=F, pt_size = 2) # create the nMDS plot with, or without labels`
-
-`upgma(data_consolidated, fromFile = T, size = 1, bts = 500) # plot a UPGMA hierarchical clustering tree. fromFile = T, because this data was read in again from Excel after adding the grouping column` 
+	library(BinMat)
+	data = read.csv("file_name.csv") # read in the binary data for all replicate sample pairs
+	check.data(data) # check for any unwanted characters apart from zeros and ones. Here, 'none found' is printed
+	peaks.original(data) # access peak summary information
+	cons = consolidate(data) # consolidate all replicate pairs into consensus reads
+	errors(cons) # get the mean Jaccard and Euclidean error rates for all replicate samples
+	peaks.consolidated(cons) # access information about the peak numbers in the consolidated matrix
+	filtered_data = peak.remove(cons, thresh = 10) # if desired, remove samples with peak counts less than 10
+	write.csv(filtered_data, file = "file_name_2.csv") # write the consolidated matrix (either the original matrix, or the filtered one) to the working directory, open in Microsoft Excel, and add grouping information as a second column in the matrix
+	data_consolidated = read.csv("file_name_2.csv") # read in this consolidated file, with the added grouping information
+	scree(data_consolidated) # choose a k-value below the 15% threshold
+	shepard(data_consolidated, k_val = 2) # create a shepard plot for k = 2 or k = 3 dimensions
+	group.names(data_consolidated) # access the group names
+	colrs = c("red", "blue", "green", "gold") # assign appropriate colors to each group. This is an example for 4 groups.
+	shps = c(16, 16, 16, 16) # assign point shapes to each group
+	nmds(data_consolidated, colours = colrs, shapes = shps, labs=F, pt_size = 2) # create the nMDS plot with, or without labels
+	upgma(data_consolidated, fromFile = T, size = 1, bts = 500) # plot a UPGMA hierarchical clustering tree. fromFile = T, because this data was read in again from Excel after adding the grouping column
 
 --- 
 
