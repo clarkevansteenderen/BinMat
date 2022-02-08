@@ -12,6 +12,14 @@ library(MASS)
 library(rhandsontable)
 library(shinyFiles)
 
+ggthemes = list("Classic" = theme_classic(),
+                "Dark" = theme_dark(),
+                "Minimal" = theme_minimal(),
+                "Grey" = theme_grey(),
+                "Light" = theme_light(),
+                "Black/White" = theme_bw(),
+                "Void" = theme_void(),
+                "Pubr" = theme_pubr())
 
 ui <- fluidPage(
 
@@ -111,6 +119,8 @@ ui <- fluidPage(
                
                br(),
                actionButton("plotMDS", "PLOT nMDS", style="color: #fff; background-color: darkred; border-color: white; font-size:130%", icon("pencil")),
+               br(), br(),
+               selectInput("ggtheme_nmds", "Select ggplot Theme:", choices = names(ggthemes), selected = ggthemes["Pubr"], width = "150px"),
                br(), br(),
               # downloadButton("download_subsetted_dat", "Download filtered data set", style="color: #fff; background-color: darkblue; border-color: white"),
               # downloadButton("download_removed_data", "Download removed samples", style="color: #fff; background-color: darkblue; border-color: white"),
