@@ -1,4 +1,4 @@
-mypackages <- c("shiny", "shinyhelper", "magrittr", "pvclust", "rhandsontable", "shinyFiles", "MASS", "readr")
+mypackages <- c("shiny", "shinyhelper", "magrittr", "pvclust", "rhandsontable", "shinyFiles", "MASS", "readr", "ggplot2", "ggpubr")
 checkpkg <- mypackages[!(mypackages %in% installed.packages()[,"Package"])]
 if(length(checkpkg)) install.packages(checkpkg, dependencies = TRUE)
 
@@ -11,6 +11,8 @@ library(pvclust)
 library(MASS)
 library(rhandsontable)
 library(shinyFiles)
+library(ggplot2)
+library(ggpubr)
 
 ggthemes = list("Classic" = theme_classic(),
                 "Dark" = theme_dark(),
