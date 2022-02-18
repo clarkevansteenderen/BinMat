@@ -31,20 +31,27 @@ Please go through the [vignette](https://cran.r-project.org/web/packages/BinMat/
 
 BinMat is available on [CRAN](https://cran.r-project.org/web/packages/BinMat/index.html), and can be installed by using the command: 
 
-`install.packages("BinMat")`  
+```{r}
+install.packages("BinMat")
+```
 
 Or it can be run via GitHub as an R shiny application:   
 
-`install.packages("shiny")`   
-`library(shiny)`   
-`shiny::runGitHub("BinMat", "clarkevansteenderen")`    
+```{r}
+install.packages("shiny")      
+library(shiny)      
+shiny::runGitHub("BinMat", "clarkevansteenderen")    
+
+```
 
 Or accessed via the R Shiny Apps platform:   
 https://clarkevansteenderen.shinyapps.io/BINMAT/   
 
 To cite BinMat, use:
 
-`citation("BinMat")` 
+```{r}
+citation("BinMat")
+```
 
 ---
 
