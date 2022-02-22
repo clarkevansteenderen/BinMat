@@ -159,11 +159,14 @@ Select the desired number of dimensions for the nMDS plot. Only 2 and 3 are avai
 Click the "Plot nMDS" button to display the plot. Point size can be altered by adjusting the slide bar, and sample labels can be displayed or hidden. The points can be displayed as a star plot if desired, and customisable ellipses can be added.
 If any changes are made, you need to click the "Plot nMDS" button again to incorporate them. 
 
-An example of the output for the **bunias_orientalis.csv** data file in the BinMat Example Data folder:
+An example of the output for the **bunias_orientalis.csv** AFLP data file in the BinMat Example Data folder:
 
 <img src = "https://github.com/clarkevansteenderen/BinMat/blob/master/BinMat_Example_Data/nMDS_Plot_bunias.png" height = 560>
 						
-							
+The output of a larger ISSR dataset (**nymphaea_mexicana.csv**), using *Nymphaea* samples, produces the plot below:
+
+<img src = "https://github.com/clarkevansteenderen/BinMat/blob/master/BinMat_Example_Data/nMDS_Plot_nymphaea.png" height = 560>
+
 **nMDS Validation Tab:**
 
 The Scree plot shows a red line at a stress value of 15%. K-values below this are acceptable to implement.
