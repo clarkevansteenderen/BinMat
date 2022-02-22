@@ -393,7 +393,7 @@ server <- function(input, output) {
         fact_table[,2] = colour_update[,2]
         fact_table[,3] = colour_update[,3]
         
-        isoplot_df = as.data.frame(tibble::as_tibble( isoplot$points ))
+        isoplot_df = suppressWarnings( as.data.frame(tibble::as_tibble( isoplot$points )) )
         isoplot_df$colours = c(colour_update[[2]])[fac]
         isoplot_df$groups = fac
         
