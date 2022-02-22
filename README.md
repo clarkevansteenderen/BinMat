@@ -41,7 +41,6 @@ Or it can be run via GitHub as an R shiny application:
 install.packages("shiny")      
 library(shiny)      
 shiny::runGitHub("BinMat", "clarkevansteenderen")    
-
 ```
 
 Or accessed via the R Shiny Apps platform:   
