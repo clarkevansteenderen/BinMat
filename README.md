@@ -158,6 +158,10 @@ Select the desired number of dimensions for the nMDS plot. Only 2 and 3 are avai
 
 Click the "Plot nMDS" button to display the plot. Point size can be altered by adjusting the slide bar, and sample labels can be displayed or hidden.
 If any changes are made, you need to click the "Plot nMDS" button again to incorporate them. 
+
+An example of the output for the **bunias_orientalis.csv** data file in the BinMat Example Data folder:
+
+<img source = "https://github.com/clarkevansteenderen/BinMat/blob/master/BinMat Example Data/nMDS_Plot_bunias.png" height = 120>
 						
 							
 **nMDS Validation Tab:**
