@@ -236,19 +236,3 @@ Average Euclidean error = (0.5+0.25) / 2 = 0.38
 Average Jaccard error = (0.67+0.33) / 2 = 0.5
 
 ---
-
-**OTHER R PACKAGES USED BY THIS PROGRAM**
-
-[**pvclust**](https://cran.r-project.org/web/packages/pvclust/index.html)
-
-[**shinyhelper**] (https://cran.r-project.org/web/packages/shinyhelper/index.html)
-
-[**readr**](https://cran.r-project.org/web/packages/readr/index.html)
-
-[**rhandsontable**](https://cran.r-project.org/web/packages/rhandsontable/rhandsontable.pdf)
-
-[**vegan**](https://cran.r-project.org/web/packages/vegan/vegan.pdf)
-
-[**MASS**](https://cran.r-project.org/web/packages/MASS/MASS.pdf)
-
-[**magrittr**](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
