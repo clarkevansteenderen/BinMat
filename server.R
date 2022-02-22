@@ -423,7 +423,7 @@ server <- function(input, output) {
         output$mdsPlot = renderPlot({
           #par(mar = c(6.1, 8.1, 5.1, 7.1))
           
-         pp = ggpubr::ggscatter(isoplot_df, 
+         pp = suppressWarnings( ggpubr::ggscatter(isoplot_df, 
                                 x = x_comp, 
                                 y = y_comp, 
                                 label = mds_labels,
@@ -438,7 +438,8 @@ server <- function(input, output) {
                                 star.plot = input$star_plot,
                                 ggtheme = ggthemes[[input$ggtheme_nmds]]
                                 )
-         
+                )# end of suppress warnings
+          
          plot(pp)
          #eqscplot(isoplot$points, xlab = "Dimension 1", ylab = "Dimension 2", col = c(colour_update[[2]])[fac], pch = c(as.numeric(colour_update[[3]]))[fac], cex = pt_size)
           
