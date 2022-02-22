@@ -23,7 +23,12 @@ inter-simple sequence repeats (ISSRs) and amplified fragment length polymorphism
 This can be applied to data consisting of replicate pairs, or it can be used to consolidate the entire dataset (i.e. treating all the samples uploaded as replicates for one
 sample). 
 The user is also able to generate interactive non-metric MDS plots, and filter their data according to a specified minimum peak number threshold.		
-Please go through the [vignette](https://cran.r-project.org/web/packages/BinMat/vignettes/BinMat.html) for more information and example output. There are two example datasets in the **BinMat_Example_Data** folder, taken from 
+Please go through the [vignette](https://cran.r-project.org/web/packages/BinMat/vignettes/BinMat.html) for more information and example output. There are two additional example datasets in the **BinMat_Example_Data** folder:
+
+- **bunias_orientalis.csv** is an AFLP dataset taken from [Tewes *et. al.* (2017)](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2745.12869) for *Bunias orientalis* L. plants from 16 populations of native, invasive or exotic non-invasive origin
+
+- **nymphaea_mexicana.csv** is an ISSR dataset (Hb15 primer) for a range of *Nymphaea* populations from South Africa and the United States. This was provided by Megan Reid, and is a part of her PhD work on invasive *Nymphaea mexicana* in South Africa. See [Reid *et. al.* (2021)](https://www.sciencedirect.com/science/article/pii/S0304377021000218)
+
 
 ---
 
