@@ -1,7 +1,7 @@
-## **BINMAT: FOR FRAGMENT ANALYSIS DATA** 
+# **BINMAT: FOR FRAGMENT ANALYSIS DATA** 
 [![DOI](https://zenodo.org/badge/238669382.svg)](https://zenodo.org/badge/latestdoi/238669382)   
 
-### **USER GUIDE**
+## **USER GUIDE**
 
 <img src="https://github.com/clarkevansteenderen/BinMat/blob/master/www/clevercow.png" height = 120>
 
@@ -16,7 +16,7 @@
 
 ---
 
-**OVERVIEW**
+## **OVERVIEW**
 
 This program was written to rapidly consolidate binary matrices derived from dominant marker genetic analyses (such as for 
 inter-simple sequence repeats (ISSRs) and amplified fragment length polymorphisms (AFLPs)). 
@@ -32,7 +32,7 @@ Please go through the [vignette](https://cran.r-project.org/web/packages/BinMat/
 
 ---
 
-**INSTALLING THE R PACKAGE**
+## **INSTALLING THE R PACKAGE**
 
 BinMat is available on [CRAN](https://cran.r-project.org/web/packages/BinMat/index.html), and can be installed by using the command: 
 
@@ -59,7 +59,7 @@ citation("BinMat")
 
 ---
 
-**UPLOADING DATA**
+## **UPLOADING DATA**
 
 Binary data needs to be in the following example format, saved as a .csv file:
 
@@ -107,7 +107,7 @@ Sample A: 0 ? ? ? 1
 																	
 ---
 
-**FUNCTIONALITY: R SHINY APPLICATION**
+## **FUNCTIONALITY: R SHINY APPLICATION**
 
 Once the .csv file is uploaded, the 'Preview' button can be clicked to view the data. 
 
@@ -187,7 +187,7 @@ The filtered data can then be re-uploaded in the 'nMDS PLOT' tab, and a new plot
 
 ---
 
-**USING THE R PACKAGE**
+## **USING THE R PACKAGE**
 
 	library(BinMat)
 	data = read.csv("file_name.csv") # read in the binary data for all replicate sample pairs
@@ -209,7 +209,7 @@ The filtered data can then be re-uploaded in the 'nMDS PLOT' tab, and a new plot
 
 --- 
 
-**METHODS**
+## **METHODS**
 
 Mismatch/Euclidean error = (f01 + f10) / (f01 + f10 + f00 + f11)
 
