@@ -436,7 +436,8 @@ server <- function(input, output) {
                                 size = pt_size,
                                 ellipse.alpha = input$ellipse_alpha,
                                 star.plot = input$star_plot,
-                                ggtheme = ggthemes[[input$ggtheme_nmds]]
+                                ggtheme = ggthemes[[input$ggtheme_nmds]],
+                                show.legend.text = FALSE
                                 )
                 )# end of suppress warnings
           
@@ -467,7 +468,9 @@ server <- function(input, output) {
                                    ellipse.type = input$ellipse_type,
                                    size = pt_size,
                                    ellipse.alpha = input$ellipse_alpha,
-                                   star.plot = input$star_plot
+                                   star.plot = input$star_plot,
+                                   ggtheme = ggthemes[[input$ggtheme_nmds]],
+                                   show.legend.text = FALSE
             )
             plot(pp)
             dev.off()
