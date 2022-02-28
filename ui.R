@@ -13,6 +13,7 @@ library(rhandsontable)
 library(shinyFiles)
 library(ggplot2)
 library(ggpubr)
+library(shinythemes)
 
 ggthemes = list("Classic" = theme_classic(),
                 "Dark" = theme_dark(),
@@ -22,8 +23,9 @@ ggthemes = list("Classic" = theme_classic(),
                 "Black/White" = theme_bw(),
                 "Void" = theme_void(),
                 "Pubr" = theme_pubr())
+            
 
-ui <- fluidPage(
+ui <- fluidPage( 
 
   titlePanel(strong("BINMAT: FOR FRAGMENT ANALYSIS DATA")),
   img(src='clevercow.png', height = '150px', width = '450px'),
@@ -134,11 +136,38 @@ ui <- fluidPage(
                checkboxInput("star_plot", "Display as a star plot?", value = FALSE),
                checkboxInput("display_ellipses", "Show ellipses?", value = FALSE),
               
-                selectInput("ellipse_type", "Ellipse type", choices = c("convex", "confidence", "t", "norm", "euclid"), selected = "norm"),
-                sliderInput("ellipse_alpha", "Ellipse colour fill", min = 0, max = 1, step = 0.1, value = 0.1),
+              selectInput("ellipse_type", "Ellipse type", choices = c("convex", "confidence", "t", "norm", "euclid"), selected = "norm"),
+              sliderInput("ellipse_alpha", "Ellipse colour fill", min = 0, max = 1, step = 0.1, value = 0.1),
+              selectInput("legend_pos", "Legend position", choices = c("top", "bottom", "right", "left", "none")),
               
                plotOutput("mdsPlot", height = "600px", width = "700px"),
+              br(),
+              wellPanel(
+                
+                textInput("file_name_nmds", "File name: ", "nmds_plot"),
+                
+                fluidRow(
+                  column(width = 2,
+                         selectInput("plot_format", "Format:", choices = c("pdf", "png", "svg"), width = "150px"),
+                  ),
+                  column(width = 2,
+                         textInput("w_plot", "Width: ", 20, width = "150px"),
+                  ),
+                  column(width = 2,
+                         textInput("h_plot", "Height: ", 15, width = "150px"),
+                  ),
+                  column(width = 2,
+                         selectInput("unit_plot", "Unit: ", choices=c("cm", "in"), width = "150px"),
+                  ),
+                  column(width = 2,
+                         conditionalPanel(
+                           condition = "input.plot_format == 'png'",
+                           textInput("res_plot", "Res (dpi): ", 300), width = "150px")
+                  ),
+                ),
+              
                downloadButton("downloadMDS", "Download MDS Plot", style="color: #fff; background-color: darkblue; border-color: white"),
+              ), # end of wellpanel
                br(), br()
 
 

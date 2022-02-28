@@ -1,4 +1,4 @@
-#NEW VERSION
+#NEW VERSION BinMat
 
 ggthemes = list("Classic" = theme_classic(),
                 "Dark" = theme_dark(),
@@ -393,7 +393,7 @@ server <- function(input, output) {
         fact_table[,2] = colour_update[,2]
         fact_table[,3] = colour_update[,3]
         
-        isoplot_df = suppressWarnings( as.data.frame(tibble::as_tibble( isoplot$points )) )
+        isoplot_df = as.data.frame(tibble::as_tibble( isoplot$points ))
         isoplot_df$colours = c(colour_update[[2]])[fac]
         isoplot_df$groups = fac
         
@@ -437,10 +437,12 @@ server <- function(input, output) {
                                 ellipse.alpha = input$ellipse_alpha,
                                 star.plot = input$star_plot,
                                 ggtheme = ggthemes[[input$ggtheme_nmds]],
-                                show.legend.text = FALSE
+                                show.legend.text = FALSE,
+                                legend = input$legend_pos
                                 )
-                )# end of suppress warnings
-          
+                                
+                              ) # end of suppress warning
+         
          plot(pp)
          #eqscplot(isoplot$points, xlab = "Dimension 1", ylab = "Dimension 2", col = c(colour_update[[2]])[fac], pch = c(as.numeric(colour_update[[3]]))[fac], cex = pt_size)
           
@@ -453,14 +455,19 @@ server <- function(input, output) {
 
         output$downloadMDS <- downloadHandler(
 
-          filename = function (){paste("nMDS_Plot", "svg", sep = '.')},
+          filename = function (){paste(input$file_name_nmds, input$plot_format, sep = '.')},
 
-          content = function (file){svg(file)
+          content = function(file){
+            
+            width = as.numeric(input$w_plot) 
+            height = as.numeric(input$h_plot) 
+            dpi = as.numeric(input$res_plot)
+            units = input$unit_plot
+            
             pp = ggpubr::ggscatter(isoplot_df, 
                                    x = x_comp, 
                                    y = y_comp, 
                                    label = mds_labels,
-                                   repel = input$repel_labs,
                                    color = "groups",
                                    palette = levels(isoplot_df$colours),
                                    shape = c(as.numeric(colour_update[[3]]))[fac],
@@ -470,10 +477,11 @@ server <- function(input, output) {
                                    ellipse.alpha = input$ellipse_alpha,
                                    star.plot = input$star_plot,
                                    ggtheme = ggthemes[[input$ggtheme_nmds]],
-                                   show.legend.text = FALSE
+                                   show.legend.text = FALSE,
+                                   legend = input$legend_pos
             )
-            plot(pp)
-            dev.off()
+            ggsave(file, width = width, height = height, dpi = dpi, units = units, pp)
+            
           }
         )
 
