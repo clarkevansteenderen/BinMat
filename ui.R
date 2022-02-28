@@ -36,7 +36,7 @@ ui <- fluidPage(
                   #radioButtons("format", "Select data format:", choices = c(".csv", ".xlsx"), selected = ".csv"),
                   #radioButtons("choice", "What type of data do you have?", choices = c("The whole dataset are replicates for one species/location" =1, "Each pair in the dataset are replicates" =2), selected = 2),
                   fileInput("inFile", "Select a .csv file", accept = c(".csv")),
-                 # actionButton("preview", "PREVIEW", style="color: #fff; background-color: black; border-color: white", icon("thumbs-o-up")),
+                 # actionButton("preview", "PREVIEW", style="color: #fff; background-color: black; border-color: white", icon("thumbs-up")),
 
                   actionButton("check", "Check my data for unwanted values", style="color: #fff; background-color: black; border-color: white"),
                   br(), br(),
@@ -93,7 +93,7 @@ ui <- fluidPage(
                br(),
                fileInput("inFile_upgma", "Select a consolidated .csv file", accept = ".csv"),
                numericInput("boot", "Number of bootstrap replicates for clustering tree:", 10, step = 1, min = 1),
-               actionButton("drawTree", "Create Clustering Tree", style="color: #fff; background-color: black; border-color: white", icon("pencil")),
+               actionButton("drawTree", "Create Clustering Tree", style="color: #fff; background-color: black; border-color: white", icon("pencil-alt")),
                downloadButton("downloadTree", "Download Clustering Tree", style="color: #fff; background-color: darkblue; border-color: white"),
                br(), br(),
                plotOutput("upgmaTree", height = "800px", width= "1500px")
@@ -165,7 +165,7 @@ ui <- fluidPage(
                numericInput("peak_thresh", "Remove samples with peaks less than:", 0, step = 1, min = 0),
                htmlOutput("msg"), tags$head(tags$style("#warn1{color: blue; font-size: 15px;}")),
                br(), br(),
-               actionButton("filter_samples", "CHECK", style="color: #fff; background-color: darkred; border-color: white; font-size:130%", icon("thumbs-o-up")),
+               actionButton("filter_samples", "CHECK", style="color: #fff; background-color: darkred; border-color: white; font-size:130%", icon("thumbs-up")),
                br(), br(),
                downloadButton("download_filtered", "Download filtered data", style="color: #fff; background-color: darkblue; border-color: white"),
                downloadButton("download_removed", "Download removed samples",  style="color: #fff; background-color: darkblue; border-color: white"),
