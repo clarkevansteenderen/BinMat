@@ -120,7 +120,7 @@ ui <- fluidPage(
                ),
                
                br(),
-               actionButton("plotMDS", "PLOT nMDS", style="color: #fff; background-color: darkred; border-color: white; font-size:130%", icon("pencil")),
+               actionButton("plotMDS", "PLOT nMDS", style="color: #fff; background-color: darkred; border-color: white; font-size:130%", icon("pencil-alt")),
                br(), br(),
                selectInput("ggtheme_nmds", "Select ggplot Theme:", choices = names(ggthemes), selected = ggthemes["Pubr"], width = "150px"),
                br(), br(),
@@ -147,8 +147,8 @@ ui <- fluidPage(
       tabPanel(strong("nMDS Validation"),
 
                br(),
-               actionButton("scree", "Scree Plot", style="color: #fff; background-color: darkblue; border-color: white", icon("pencil")),
-               actionButton("shep", "Shepard Plot", style="color: #fff; background-color: darkblue; border-color: white", icon("pencil")),
+               actionButton("scree", "Scree Plot", style="color: #fff; background-color: darkblue; border-color: white", icon("pencil-alt")),
+               actionButton("shep", "Shepard Plot", style="color: #fff; background-color: darkblue; border-color: white", icon("pencil-alt")),
                plotOutput("screePlot", height = "600px", width = "700px"),
                br(),
                downloadButton("download_scree", "Download Scree Plot", style="color: #fff; background-color: darkblue; border-color: white"),
