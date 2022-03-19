@@ -16,6 +16,12 @@
 
 ---
 
+⭐ BinMat has been accepted in the Biodiversity Data Journal:
+
+van Steenderen, C. 2022. BinMat: A molecular genetics tool for processing binary data obtained from fragment analysis in R. **Biodiversity Data Journal** 10: e77875. https://doi.org/10.3897/BDJ.10.e77875
+
+Please cite this article if you use the program.
+
 ## **OVERVIEW**
 
 This program was written to rapidly consolidate binary matrices derived from dominant marker genetic analyses (such as for 
